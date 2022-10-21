@@ -1,0 +1,41 @@
+#!/bin/bash
+
+function send_notification() {
+    volume=$(pamixer --get-volume)
+    notify-send -a "changevolume" -u low -r "9993" -h int:value:"$volume" "Volume: ${volume}%" -t 2000
+}
+
+slock=$(ps -C slock | sed -n '1!p' | awk '{ print $4 }' | sed 's/slock/running/')
+
+case $1 in
+    up)
+        pamixer -u
+        pamixer -i 2
+        if [ slock != "running" ]; then
+            send_notification $1
+        fi
+        ;;
+    down)
+        pamixer -u
+        pamixer -d 2
+        if [ slock != "running" ]; then
+            send_notification $1
+        fi
+        ;;
+    mute)
+        pamixer -t
+        if $(pamixer --get-mute); then
+            if [ slock != "running" ]; then
+                notify-send -i volume-mute -a "changevolume" -t 2000 -r 9993 -u low "Volume:" "Muted"
+            fi
+        else
+            if [ slock != "running" ]; then
+                send_notification $1
+            fi
+        fi
+        ;;
+    notify)
+        if [ slock != "running" ]; then
+            notify-send -i volume-mute -a "changevolume" -t 2000 -r 9993 -u low "Volume:" "Device changed"
+        fi
+esac

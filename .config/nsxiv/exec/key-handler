@@ -1,0 +1,10 @@
+#!/bin/sh
+
+while read file; do
+    case "$1" in
+        "w") xwallpaper --stretch $file ;;
+        "c") cat $file | xclip -sel c -t image/png ;;
+        "d") rm "$file" ;;
+        "m") mv "$file" $HOME/.local/share/walls/ ;;
+    esac
+done

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+walDir="$@"
+
+wallpapers=$(find $walDir -type f)
+
+for wallpaper in $wallpapers ; do
+    printf '%s\n' $wallpaper
+
+    [ ! -f "wallpaper" ] || continue
+
+    wal-seter $wallpaper
+
+    quick-notify "Testing"
+
+    nvim
+
+    read -p '\nKeep the wallpaper? [Y/n]: ' yn < /dev/tty
+
+    if [ "$yn" == "n" ]; then
+        rm $wallpaper
+    fi
+done

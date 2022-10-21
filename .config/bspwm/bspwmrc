@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# Making sure workspaces aren't set again after initializing, can break spawning new gui windows otherwise
+if [ ! -f "$HOME/.cache/bspwm.lock" ]; then
+    bspc monitor -d 1 2 3 4 5 6 7 8 9
+
+    # setting up my monocle workspaces
+    bspc desktop 1 -l monocle
+    bspc desktop 4 -l monocle
+    bspc desktop 5 -l monocle
+
+    touch "$HOME/.cache/bspwm.lock"
+fi
+
+bspc config border_width    3
+bspc config top_padding     23
+# bspc config border_radius   10
+bspc config window_gap      11
+
+bspc config split_ratio             0.5
+bspc config single_monocle          false
+bspc config focus_follows_pointer   false
+bspc config borderless_monocle      false
+bspc config gapless_monocle         false
+
+bspc config focused_border_color    "#939ab7"
+bspc config normal_border_color     "#5b6078"
+
+# my scratch pad rules
+bspc rule -a spterm state=floating
+bspc rule -a splf state=floating
+
+# Regular window rules
+bspc rule -a KeePassXC sticky=on
+bspc rule -a firefox desktop=^1 follow=on
+bspc rule -a discord desktop=^5 follow=on
+bspc rule -a Ferdium desktop=^5 follow=on
+bspc rule -a thunderbird desktop=^5 follow=on
+bspc rule -a tutanota-desktop desktop=^5 follow=on
+bspc rule -a Lutris desktop=^6 follow=on
+bspc rule -a Steam desktop=^6 follow=on
+
+# specific terminal rules
+bspc rule -a newsboat desktop=^4 follow=on
+
+start-program sxhkd
+start-program -f transmission-daemon
+start-program -f clipmenud
+start-program lxsession
+start-program picom --experimental-backends
+start-program syncthing
+start-program dunst
+start-program keepassxc
+start-program -c Discord discord --start-minimized
+start-program ferdium
+start-program polybar top -r
+start-program -x mpd
+start-program -f mpDris2
+start-program mpd-discord-rpc

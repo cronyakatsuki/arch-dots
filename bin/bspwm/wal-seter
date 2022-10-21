@@ -1,0 +1,37 @@
+#!/bin/sh
+
+restart () {
+ID=$(pgrep "$1")
+
+if [ ! -z "$ID" ]; then
+    kill $ID
+    "$@" & disown $1
+fi
+}
+
+waldir="$HOME/pics/wallpapers/"
+
+wal -c
+
+if [ -z "$@" ]; then
+    wal -n -i $waldir
+elif [ "$@" == "fzf" ]; then
+    img=$(find $waldir -type f | sort | fzf --preview="kitty-img-previewer {}" --preview-window=right:50%)
+    [ -z "$img" ] && exit 0 || wal -n -i $img
+else
+    wal -n -i "$@"
+fi
+
+xwallpaper --stretch "$(< "${HOME}/.cache/wal/wal")"
+
+[ ! -z "$(pgrep dwm)" ] && xdotool key Super+F5
+
+[ ! -z "$(pgrep awesome)" ] && xdotool key Super+Shift+R
+
+pywalfox update
+
+pywal-discord
+
+cat $HOME/.cache/wal/colors.dunstrc > $HOME/.config/dunst/dunstrc && restart dunst
+
+cat $HOME/.cache/wal/colors.zathurarc > $HOME/.config/zathura/zathurarc
