@@ -43,13 +43,14 @@ fi
 # fi
 
 
-[ -f "$HOME/.cache/bspwm.lock" ] && rm $HOME/.cache/bspwm.lock
-[ -f "$HOME/.cache/dwm.lock" ] && rm $HOME/.cache/dwm.lock
+# [ -f "$HOME/.cache/bspwm.lock" ] && rm $HOME/.cache/bspwm.lock
+# [ -f "$HOME/.cache/dwm.lock" ] && rm $HOME/.cache/dwm.lock
 [ -f "$HOME/.cache/gaming.lock" ] && rm $HOME/.cache/gaming.lock
+[ -f "$HOME/.cache/dk.lock" ] && rm $HOME/.cache/dk.lock
 
 optimus-fix.sh
 mouse_detect.sh x11
 xsetroot -cursor_name left_ptr
-# xwallpaper --stretch $HOME/pics/KurzegartDNA.png
+xwallpaper --stretch $HOME/pics/wallpaper.jpg
 
-exec qtile start
+exec dk

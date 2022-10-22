@@ -50,58 +50,31 @@ theming: ## Install and setup theming settings
 envycontrol: ## Install envycontrol
 	$(PKGINSTALL) envycontrol
 
-zathura: ## Install and setup zathura configuration
-	$(PKGINSTALL) zathura zathura-pdf-mupdf
-	mkdir -p $(CONFIG)/zathura
-	$(LN) $(BASE)/.config/zathura/* $(CONFIG)/zathura
-
 nsxiv: ## Install and setup nsxiv configuration
 	$(PKGINSTALL) nsxiv
-	mkdir -p $(CONFIG)/nsxiv
-	$(LN) $(BASE)/.config/nsxiv/* $(CONFIG)/nsxiv
+	mkdir -p $(CONFIG)/nsxiv/exec
+	$(LN) $(BASE)/.config/nsxiv/exec/* $(CONFIG)/nsxiv/exec
 
 mpv: ## Install and setup mpv configuration
 	$(PKGINSTALL) mpv-mpris-git mpv-sponsorblock-minimal-git mpv-thumbnail-script mpv
 	mkdir -p $(CONFIG)/mpv
-	$(LN) $(BASE)/.config/nsxiv/* $(CONFIG)/nsxiv
-
-mpd: ## Install and setup mpd configuration
-	$(PKGINSTALL) mpd mpdris2 ncmpcpp
-	mkdir -p $(CONFIG)/mpd
-	mkdir -p $(CONFIG)/ncmpcpp
-	mkdir -p $(CONFIG)/mpDris2
-	$(LN) $(BASE)/.config/mpd/* $(CONFIG)/mpd
-	$(LN) $(BASE)/.config/ncmpcpp/* $(CONFIG)/ncmpcpp
-	$(LN) $(BASE)/.config/mpDris2/* $(CONFIG)/mpDris2
+	$(LN) $(BASE)/.config/mpv/* $(CONFIG)/mpv
 
 lf: ## Install and setup lf configuration
 	$(PKGINSTALL) lf w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup
 	mkdir -p $(CONFIG)/lf
 	$(LN) $(BASE)/.config/lf/* $(CONFIG)/lf
 
-newsboat: ## Install and setup newsboat configuration
-	$(PKGINSTALL) newsboat cronie
-	sudo systemctl enable cronie
-	mkdir -p $(CONFIG)/newsboat
-	$(LN) $(BASE)/.config/newsboat/* $(CONFIG)/newsboat
-	echo "# minute hour day_of_month month day_of_week command
-	*/30  *        *         *        *      /usr/bin/newsboat -x reload" | crontab
-
 opentabletdriver: ## Install and setup opentabletdriver
 	$(PKGINSTALL) opentabletdriver
 	echo "blacklist wacom" | sudo tee -a /etc/modprobe.d/blacklist.conf
 	echo "blacklist hid_uclogic" | sudo tee -a /etc/modprobe.d/blacklist.conf
 
-transmission-daemon: ## Install and setup transmission-daemon configuration
-	$(PKGINSTALL) transmission-cli
-	mkdir -p $(CONFIG)/transmission-daemon
-	$(LN) $(BASE)/.config/transmission-daemon/* $(CONFIG)/transmission-daemon
-
-bspwm: ## Install and setup bspwm configuration
-	$(PKGINSTALL) bspwm polybar sxhkd xtitle-git
-	mkdir -p $(CONFIG)/bspwm
-	mkdir -p $(CONFIG)/polybar
-	mkdir -p $(CONFIG)/sxhkd
-	$(LN) $(BASE)/.config/bspwm/* $(CONFIG)/bspwm
-	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
-	$(LN) $(BASE)/.config/sxhkd/* $(CONFIG)/sxhkd
+# bspwm: ## Install and setup bspwm configuration
+# 	$(PKGINSTALL) bspwm polybar sxhkd xtitle-git
+# 	mkdir -p $(CONFIG)/bspwm
+# 	mkdir -p $(CONFIG)/polybar
+# 	mkdir -p $(CONFIG)/sxhkd
+# 	$(LN) $(BASE)/.config/bspwm/* $(CONFIG)/bspwm
+# 	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
+# 	$(LN) $(BASE)/.config/sxhkd/* $(CONFIG)/sxhkd

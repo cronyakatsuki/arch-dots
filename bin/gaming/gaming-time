@@ -9,23 +9,15 @@ enableCronJobs () {
 }
 
 if [ -f $HOME/.cache/gaming.lock ]; then
-    start-program mpd
     start-program picom
-    start-program ferdium
     start-program transmission-daemon
     start-program syncthing
-    start-program mpDris2
-    start-program mpd-discord-rpc
     enableCronJobs
     rm $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "OFF"
 else
-    kill-nicely -f mpDris2
     kill-nicely picom
-    kill-nicely ferdium
     kill-nicely syncthing
-    kill-nicely -x mpd
-    kill-nicely mpd-discord-rpc
     transmission-remote --exit
     disableCronJobs
     touch $HOME/.cache/gaming.lock

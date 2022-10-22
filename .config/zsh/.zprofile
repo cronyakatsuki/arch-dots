@@ -11,7 +11,7 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 export SXHKD_SHELL='/usr/bin/sh'
 
 # run wm
-[[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx $HOME/.config/X11/xinitrc &> $HOME/.local/state/startx.log
+[[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx $HOME/.config/X11/xinitrc &> /dev/null
 # [[ $(fgconsole 2>/dev/null) == 1 ]] && exec start-wayland &> /dev/null
 # [[ $(fgconsole 2>/dev/null) == 1 ]] && exec start-hyprland &> /dev/null
 
