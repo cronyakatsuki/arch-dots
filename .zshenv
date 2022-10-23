@@ -61,11 +61,15 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
 --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 
+# bemene options
+export BEMENU_OPTS="-H 24 --fn 'JetBrainsMono Nerd Font 10' \
+    --nf '#8aadf4' --nb '#1e2030' --af '#8aadf4' --ab '#1e2030' \
+    --sb '#8aadf4' --sf '#1e2030' --tb '#8aadf4' --tf '#1e2030' \
+    --ff '#8aadf4' --fb '#1e2030' --hb '#8aadf4' --hf '#1e2030' \
+    --fbf '#8aadf4' --fbb '#1e2030'" 
+
 # bat theme
 export BAT_THEME="Catppuccin-macchiato"
-
-# fix minimization with games
-export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 # lf icons
 export LF_ICONS="\

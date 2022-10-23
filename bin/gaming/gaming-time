@@ -8,25 +8,41 @@ enableCronJobs () {
     crontab -l | sed '2s/^.//' | crontab
 }
 
-if [ -f $HOME/.cache/gaming.lock ]; then
+wayland_off () {
+    start-program wbg ~/pics/wallpaper.jpg
+}
+
+wayland_on () {
+    kill-nicely wbg
+}
+
+x11_off () {
     start-program picom
+    start-program polybar top -r
+}
+
+x11_on () {
+    kill-nicely picom
+    kill-nicely polybar
+}
+
+if [ -f $HOME/.cache/gaming.lock ]; then
+    [ $XDG_SESSION_TYPE = "wayland" ] && wayland_off || x11_off
     start-program transmission-daemon
     start-program syncthing
-    start-program mpd
+    start-program mpd --no-daemon
     start-program mpDris2
     start-program ferdium
-    start-program polybar top -r
     enableCronJobs
     rm $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "OFF"
 else
-    kill-nicely picom
-    kill-nicely syncthing
-    kill-nicely -f mpDris2
-    kill-nicely mpd
-    kill-nicely ferdium
-    kill-nicely polybar
+    [ $XDG_SESSION_TYPE = "wayland" ] && wayland_on || x11_on
     transmission-remote --exit
+    syncthing cli operations shutdown
+    kill-nicely -f mpDris2
+    mpd --kill
+    kill-nicely ferdium
     disableCronJobs
     touch $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "ON"

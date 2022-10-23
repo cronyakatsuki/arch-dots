@@ -1,5 +1,13 @@
 #!/bin/sh
 
+export XDG_SESSION_TYPE=wayland
+export MOZ_ENABLE_WAYLAND=1
+# export GTK_THEME=Catppuccin-Macchiato
 export XKB_DEFAULT_LAYOUT="hr"
 export XKB_DEFAULT_OPTIONS="caps:escape"
-river
+
+[ -f "$HOME/.cache/gaming.lock" ] && rm $HOME/.cache/gaming.lock
+
+sudo ryzenset set normal-mode
+
+exec dbus-run-session river

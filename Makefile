@@ -42,10 +42,12 @@ theming: ## Install and setup theming settings
 	mkdir -p $(CONFIG)/gtk-2.0
 	mkdir -p $(CONFIG)/gtk-3.0
 	mkdir -p $(CONFIG)/qt5ct
+	mkdir -p $(HOME)/.icons/default
 	$(LN) $(BASE)/.config/Kvantum/* $(CONFIG)/Kvantum
 	$(LN) $(BASE)/.config/gtk-2.0/* $(CONFIG)/gtk-2.0
 	$(LN) $(BASE)/.config/gtk-3.0/* $(CONFIG)/gtk-3.0
 	$(LN) $(BASE)/.config/qt5ct/* $(CONFIG)/qt5ct
+	$(LN) $(BASE)/.icons/default/* $(HOME)/.icons/default
 
 envycontrol: ## Install envycontrol
 	$(PKGINSTALL) envycontrol
@@ -70,11 +72,20 @@ opentabletdriver: ## Install and setup opentabletdriver
 	echo "blacklist wacom" | sudo tee -a /etc/modprobe.d/blacklist.conf
 	echo "blacklist hid_uclogic" | sudo tee -a /etc/modprobe.d/blacklist.conf
 
-# bspwm: ## Install and setup bspwm configuration
-# 	$(PKGINSTALL) bspwm polybar sxhkd xtitle-git
-# 	mkdir -p $(CONFIG)/bspwm
-# 	mkdir -p $(CONFIG)/polybar
-# 	mkdir -p $(CONFIG)/sxhkd
-# 	$(LN) $(BASE)/.config/bspwm/* $(CONFIG)/bspwm
-# 	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
-# 	$(LN) $(BASE)/.config/sxhkd/* $(CONFIG)/sxhkd
+dk: ## Install and setup dk configuration
+	$(PKGINSTALL) dk polybar sxhkd xtitle-git qt5-wayland
+	mkdir -p $(CONFIG)/dk
+	mkdir -p $(CONFIG)/polybar
+	$(LN) $(BASE)/.config/dk/* $(CONFIG)/dk
+	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
+
+wayland: ## Basic wayland packages needed for nice usage
+	$(PKGINSTALL) waylock swayidle-git wlr-randr wl-clipboard bemenu bemenu-wayland imv-git qt5-wayland wbg
+	mkdir -p $(CONFIG)/waylock
+	$(LN) $(BASE)/.config/waylock/* $(CONFIG)/waylock
+
+
+river: ## Install and setup river wayland compositor
+	$(PKGINSTALL) river-git
+	mkdir -p $(CONFIG)/river
+	$(LN) $(BASE)/.config/river/* $(CONFIG)/river
