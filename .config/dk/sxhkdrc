@@ -1,0 +1,94 @@
+#!/usr/bin/env sh
+
+# power menu, quit dk
+super + {shift, control} + e
+    {dmenu-power-menu, dkcmd exit}
+
+# reload dk or sxhkd
+super + {shift, control} + r
+    {dkcmd reload, pkill -USR1 -x sxhkd}
+
+# close window, swap tiled window in/out of master
+super + shift + {q,Return}
+	dkcmd win {kill,swap}
+
+# focus next or previous window
+super + {j,k}
+	dkcmd win focus {next,prev}
+
+# move the active window up/down the stack
+super + shift + {j,k}
+	dkcmd win mvstack {down,up}
+
+# resize window, signed (+/-) for relative changes
+super + {h,l}
+	dkcmd win resize {w=-20,w=+20}
+
+# view, send, or follow to a workspace (by number)
+super + {_,shift + ,ctrl + }{1-9}
+	dkcmd ws {view,send,follow} {1-9}
+
+# focues last used workspace cycle tiled windows in place
+{super, alt} + Tab
+    dkcmd {ws view last, win cycle}
+
+# toggle fullscreen
+super + F11
+	dkcmd win full
+
+# toggle floating or sticky
+super + shift + space
+	dkcmd win float
+
+# change number of windows in master or first stack
+super + {comma, period}
+	dkcmd set master {+1,-1}
+
+##---System Control---##
+
+# Audio Control
+{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
+    sb-volume-update { up, down, mute }
+
+# Brightness
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+    sb-backlight-update { up, down }
+
+# Player control keybindings
+{XF86AudioPlay,XF86AudioPrev,XF86AudioNext}
+    dmenu-playerctl {play-pause,previous,next}
+
+##---Aplication Launchers---##
+
+# terminal
+super  + Return
+	$TERMINAL
+
+# Browser run
+super + {_, shift + }b
+    {$BROWSER, firefox -P unsecure}
+
+# Gui Programs
+super + g; l
+    slock
+
+# Terminal Programs
+super + n
+    $TERMINAL --class newsboat -e newsboat
+
+##---Dmenu bindings---#
+
+# Key chaining some certain scripts
+super + p; {g,e,t,u,w,d,k}
+    {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man, dmenu-wifi, dmenu-runner, dmenu-kill}
+
+# Regular binding some other one's
+super + {d,F12,c}
+    {dmenu_run, dmenu-ryzenadj, clipmenu -l 10}
+
+Print
+    dmenu-screenshot
+
+##---Gaming bindings---##
+super + {shift, ctrl} + F12
+    {toggle-program picom --experimental-backends, gaming-time}

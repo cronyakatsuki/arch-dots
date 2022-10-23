@@ -12,12 +12,20 @@ if [ -f $HOME/.cache/gaming.lock ]; then
     start-program picom
     start-program transmission-daemon
     start-program syncthing
+    start-program mpd
+    start-program mpDris2
+    start-program ferdium
+    start-program polybar top -r
     enableCronJobs
     rm $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "OFF"
 else
     kill-nicely picom
     kill-nicely syncthing
+    kill-nicely -f mpDris2
+    kill-nicely mpd
+    kill-nicely ferdium
+    kill-nicely polybar
     transmission-remote --exit
     disableCronJobs
     touch $HOME/.cache/gaming.lock

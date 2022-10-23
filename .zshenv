@@ -7,7 +7,7 @@
                        # |___/
 # Path exprt
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/bin/dmenu/" "$HOME/bin/gaming/" "$HOME/bin/statusbar/" "$HOME/bin/misc/" "$path[@]")
+path=("$HOME/.local/bin" "$HOME/bin/dmenu/" "$HOME/bin/gaming/" "$HOME/bin/statusbar/" "$HOME/bin/misc/" "$HOME/bin/wayland" "$path[@]")
 export PATH
 
 # Programs export

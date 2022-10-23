@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export XKB_DEFAULT_LAYOUT="hr"
+export XKB_DEFAULT_OPTIONS="caps:escape"
+river
