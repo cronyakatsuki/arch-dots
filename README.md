@@ -1,7 +1,26 @@
 <h1 align="center"> Welcome to my dotfiles </h1>
 
-### Introduction
+# X11
+- Window Manager : [DK](https://bitbucket.org/natemaia/dk/src/master/)
+- Notification daemon : [Dunst](https://github.com/dunst-project/dunst)
+- Theming : [Catppuccin](https://github.com/catppuccin/)
+- Terminal : [Kitty](https://sw.kovidgoyal.net/kitty/)
+- File Manager : cli or [lf](https://github.com/gokcehan/lf)
+- Media Player : [mpv](https://github.com/mpv-player/mpv)
+- Image viewer : [nsxiv](https://github.com/nsxiv/nsxiv)
+- Compositor : [picom](https://github.com/yshui/picom)
+- Bar : [polybar](https://github.com/polybar/polybar)
+- Program runner : [dmenu](https://github.com/cronyakatsuki/dmenu)
+- Screen locker : [slock](https://github.com/cronyakatsuki/slock)
 
-This is my dotfiles repository that I run for easy moving my configuration to another pc.
-Of course this repository can also serve for anyone else that wants to see what kind of configuration is needed for my kind of desktop and experience.
+# Wayland Compositors
 
+## River
+- Media Player : [mpv](https://github.com/mpv-player/mpv)
+- Notification daemon : [Dunst](https://github.com/dunst-project/dunst)
+- Theming : [Catppuccin](https://github.com/catppuccin/)
+- Terminal : [Kitty](https://sw.kovidgoyal.net/kitty/)
+- File Manager : cli or [lf](https://github.com/gokcehan/lf)
+- Image Viewer : [imv](https://sr.ht/~exec64/imv/)
+- Program runner : [bemenu](https://github.com/Cloudef/bemenu)
+- Screen locker : [waylock](https://github.com/ifreund/waylock)
