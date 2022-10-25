@@ -1,16 +1,14 @@
 #!/bin/sh
 
 # Autostart
+riverctl spawn 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
+riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 riverctl spawn 'wbg ~/pics/wallpaper.jpg'
-# riverctl spawn import-gsettings
 riverctl spawn 'mouse_detect.sh'
-riverctl spawn 'swayidle timeout 310 "waylock" timeout 300 "wlr-randr --output eDP-1 --off" resume "wlr-randr --output eDP-1 --on"'
+riverctl spawn waybar
 riverctl spawn transmission-daemon
-# riverctl spawn lxsession
 riverctl spawn syncthing
 riverctl spawn dunst
-# riverctl spawn 'discord --start-minimized'
-# riverctl spawn ferdium
 riverctl spawn keepassxc
 riverctl spawn "mpd --no-daemon"
 riverctl spawn mpDris2
@@ -34,6 +32,7 @@ riverctl map normal Super+Shift F12 spawn gaming-time
 # Keychaining some dmenu  scripts
 riverctl declare-mode dmenu
 riverctl map normal Super P enter-mode dmenu
+riverctl map dmenu None Escape enter-mode normal
 riverctl map dmenu None G spawn "dmenu-games & riverctl enter-mode normal"
 riverctl map dmenu None E spawn "dmenu-configs & riverctl enter-mode normal"
 riverctl map dmenu None T spawn "dmenu-transmission & riverctl enter-mode normal"
@@ -44,7 +43,9 @@ riverctl map dmenu None K spawn "dmenu-kill & riverctl enter-mode normal"
 
 riverctl declare-mode gui
 riverctl map normal Super G enter-mode gui
+riverctl map gui None Escape enter-mode normal
 riverctl map gui None L spawn "waylock & riverctl enter-mode normal"
+
 
 # River Keybindings
 riverctl map normal Super+Shift Q close
@@ -126,10 +127,10 @@ riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
 riverctl declare-mode passthrough
 
 # Super+F11 to enter passthrough mode
-riverctl map normal Super + Shift F11 enter-mode passthrough
+riverctl map normal Super+Shift F11 enter-mode passthrough
 
 # Super+F11 to return to normal mode
-riverctl map passthrough Super + Shift F11 enter-mode normal
+riverctl map passthrough Super+Shift F11 enter-mode normal
 
 # Various media key mapping examples for both normal and locked mode which do
 # not have a modifier
@@ -158,7 +159,7 @@ riverctl hide-cursor timeout 5000
 
 # Make certain views start floating
 riverctl float-filter-add app-id float
-riverctl float-filter-add title "popup title with spaces"
+riverctl float-filter-add title "Password Required - Mozilla Thunderbird"
 
 # Set app-ids and titles of views which should use client side decorations
 riverctl csd-filter-add app-id "gedit"
@@ -185,4 +186,4 @@ riverctl input "pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad" scroll-method
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-exec rivertile -view-padding 6 -outer-padding 6 -main-ratio 0.5
+exec rivertile -view-padding 4 -outer-padding 4 -main-ratio 0.5
