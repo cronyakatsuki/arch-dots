@@ -10,15 +10,18 @@ enableCronJobs () {
 
 wayland_off () {
     start-program wbg ~/pics/wallpaper.jpg
+    start-program waybar
 }
 
 wayland_on () {
     kill-nicely wbg
+    kill-nicely waybar
 }
 
 x11_off () {
     start-program picom
     start-program polybar top -r
+    start-program ferdium
 }
 
 x11_on () {
@@ -32,7 +35,6 @@ if [ -f $HOME/.cache/gaming.lock ]; then
     start-program syncthing
     start-program mpd --no-daemon
     start-program mpDris2
-    start-program ferdium
     enableCronJobs
     rm $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "OFF"

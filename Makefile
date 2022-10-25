@@ -80,7 +80,7 @@ dk: ## Install and setup dk configuration
 	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
 
 wayland: ## Basic wayland packages needed for nice usage
-	$(PKGINSTALL) waylock swayidle-git wlr-randr wl-clipboard bemenu bemenu-wayland imv-git qt5-wayland wbg
+	$(PKGINSTALL) waylock wl-clipboard bemenu bemenu-wayland imv-git qt5-wayland qt6-wayland wbg grim slurp xdg-desktop-portal-wlr
 	mkdir -p $(CONFIG)/waylock
 	$(LN) $(BASE)/.config/waylock/* $(CONFIG)/waylock
 
