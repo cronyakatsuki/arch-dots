@@ -71,6 +71,8 @@ opentabletdriver: ## Install and setup opentabletdriver
 	$(PKGINSTALL) opentabletdriver
 	echo "blacklist wacom" | sudo tee -a /etc/modprobe.d/blacklist.conf
 	echo "blacklist hid_uclogic" | sudo tee -a /etc/modprobe.d/blacklist.conf
+	sudo modprobe -r wacom
+	sudo modprobe -r hid_uclogic
 
 dk: ## Install and setup dk configuration
 	$(PKGINSTALL) dk polybar sxhkd xtitle-git qt5-wayland

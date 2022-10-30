@@ -66,6 +66,7 @@ fi
 	dkcmd rule class="^tutanota-desktop$" ws=5 focus=true
 	dkcmd rule class="^Lutris$" ws=6 focus=true
 	dkcmd rule class="^Steam$" ws=6 focus=true
+	dkcmd rule class="^heroic$" ws=6 focus=true
 
 } >> "$logfile" 2>&1 # append responses
 

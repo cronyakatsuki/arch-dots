@@ -4,14 +4,17 @@
 riverctl spawn 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 riverctl spawn 'wbg ~/pics/wallpaper.jpg'
-riverctl spawn 'mouse_detect.sh'
+riverctl spawn reload-portals
+riverctl spawn mouse_detect.sh
 riverctl spawn waybar
 riverctl spawn transmission-daemon
 riverctl spawn syncthing
-riverctl spawn dunst
+riverctl spawn fnott
 riverctl spawn keepassxc
 riverctl spawn "mpd --no-daemon"
 riverctl spawn mpDris2
+riverctl spawn "discord --start-minimized"
+riverctl spawn ferdium
 
 # Programs keybindings
 riverctl map normal Super Return spawn $TERMINAL
@@ -186,4 +189,4 @@ riverctl input "pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad" scroll-method
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-exec rivertile -view-padding 4 -outer-padding 4 -main-ratio 0.5
+exec rivertile -view-padding 9 -outer-padding 8 -main-ratio 0.5
