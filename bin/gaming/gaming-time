@@ -9,7 +9,7 @@ enableCronJobs () {
 }
 
 wayland_off () {
-    start-program wbg ~/pics/wallpaper.jpg
+    start-program wbg ~/pics/wallpapers/spooky_spill.jpg
     start-program waybar
 }
 

@@ -49,8 +49,10 @@ fi
 [ -f "$HOME/.cache/dk.lock" ] && rm $HOME/.cache/dk.lock
 
 optimus-fix.sh
-mouse_detect.sh x11
+mouse_detect.sh
 xsetroot -cursor_name left_ptr
-xwallpaper --stretch $HOME/pics/wallpaper.jpg
+xwallpaper --stretch $HOME/pics/wallpapers/spooky_spill.jpg
+
+export XDG_SESSION_TYPE=x11
 
 exec dk

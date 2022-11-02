@@ -3,7 +3,7 @@
 # Autostart
 riverctl spawn 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
-riverctl spawn 'wbg ~/pics/wallpaper.jpg'
+riverctl spawn 'wbg ~/pics/wallpapers/spooky_spill.jpg'
 riverctl spawn reload-portals
 riverctl spawn mouse_detect.sh
 riverctl spawn waybar

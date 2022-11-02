@@ -1,13 +1,5 @@
 #!/bin/sh
 
-# Config by
-  # ____                            _    _         _             _    _
- # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
-# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
-# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
- # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
-                       # |___/
-
 # Program alias
 alias ssd-check="sudo smartctl -a /dev/nvme0n1 | grep -E -- 'Data Units Read:|Data Units Written:|Percentage Used:'"
 alias grep='grep --color=auto'
@@ -19,6 +11,7 @@ alias free='free -m -h'                      # show sizes in MB
 alias spotdl='spotdl --output-format ogg -p "{artist}/{album}/{artists} - {title}.{ext}" --dt 8 --st 8'
 alias pacman-rm-orphans='sudo pacman -Rnsc $(pacman -Qtdq)'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias dust='du -hd1 | sort -hr | sed "s/.\///g"'
 
 # Function aliases
 alias yta='yt-dlp -x -f bestaudio --external-downloader aria2c --external-downloader-args "-j 16 -s 16 -x 16 -k 5M" --audio-format vorbis -o "%(title)s.%(ext)s"'
@@ -27,23 +20,48 @@ alias ytvf='yt-dlp --merge-output-format mp4 --format best --embed-thumbnail --e
 
 alias dl='aria2c -j 16 -s 16 -x 16 -k 5M --file-allocation=none'
 alias lf='lf-run $@'
-alias exif-clean="exiftool -overwrite_original -recurse -all="
 
 # functions
+
+# Cd into a directory using fzf
 fcd () {
     cd "$(find -type d | fzf)"
 }
 
-fopen () {
-    xdg-open "$(find -type f | fzf)"
-}
-
+# Quicly choose stuff to add using fzf
 fga () {
     git add $(git status -s | awk '{ print $2 }' | fzf -m)
 }
 
+# Open a script in path with vim quicly
 vish () {
     nvim $(which $1)
 }
 
-alias h="history 1 -1 | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
+# Open a directory indide .config with vim
+vicfg () {
+    dir=$(pwd)
+    cd ~/.config
+    [[ "$1" != "" ]] && nvim $1
+    cd $dir
+}
+
+# Change into a directory in .config
+cfg () {
+    dir=$(pwd)
+    cd ~/.config
+    [[ "$1" != "" ]] && cd $1 || cd $dir
+}
+
+# Create a directory and change into it
+md () {
+    mkdir -p "$@" && cd "$@"
+}
+
+# Move a file and create a link in it's place
+mvln () {
+    from=$(readlink -f $1)
+    to=$(readlink -f $2)
+    mv $from $to
+    ln -s $to $from
+}
