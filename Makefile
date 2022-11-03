@@ -6,6 +6,27 @@ LN = ln -vsf
 LNDIR = ln -vs
 PKGINSTALL = paru -S --noconfirm --needed
 
+zsh: ## Install my zsh config abd link my scripts
+	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
+	$(LN) $(BASE).zshenv $(HOME)/.zshenv
+	mkdir -p $(CONFIG)
+	$(LN) $(BASE).config/zsh/* $(CONFIG)/zsh
+	$(LN) $(BASE).config/zsh/.* $(CONFIG)/zsh
+	$(LN) $(BASE).config/starship.toml $(CONFIG)/starship
+	mkdir $(BIN)
+	$(LN) $(BASE)/bin/* $(BIN)
+	chsh -s `which zsh`
+
+xdg-user-dirs: ## Create and manage XDG-USER-DIRS
+	$(LN) $(BASE)/.config/user-dirs.dirs $(CONFIG)/user-dirs.dirs
+	mkdir -p $(HOME)/.local/share/desktop
+	mkdir -p $(HOME)/downs
+	mkdir -p $(HOME)/.local/share/templates
+	mkdir -p $(HOME)/.local/share/public
+	mkdir -p $(HOME)/docs
+	mkdir -p $(HOME)/music
+	mkdir -p $(HOME)/pics
+	mkdir -p $(HOME)/vids
 
 ryzenadj: ## Install ryzenadj
 	$(PKGINSTALL) ryzenadj-git ryzen_smu-dkms-git
