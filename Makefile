@@ -10,6 +10,7 @@ zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
 	$(LN) $(BASE).zshenv $(HOME)/.zshenv
 	mkdir -p $(CONFIG)
+	mkdir -p $(CONFIG)/zsh
 	$(LN) $(BASE).config/zsh/* $(CONFIG)/zsh
 	$(LN) $(BASE).config/zsh/.* $(CONFIG)/zsh
 	$(LN) $(BASE).config/starship.toml $(CONFIG)/starship
