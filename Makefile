@@ -6,6 +6,23 @@ LN = ln -vsf
 LNDIR = ln -vs
 PKGINSTALL = paru -S --noconfirm --needed
 
+all:
+	zsh
+	xdg-user-dirs
+	startx
+	kitty
+	picom
+	fonts
+	dunst
+	theming
+	nsxiv
+	mpv
+	lf
+	opentabletdriver
+	dk
+	wayland
+	river
+
 zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
 	$(LN) $(BASE).zshenv $(HOME)/.zshenv
