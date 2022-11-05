@@ -97,9 +97,12 @@ nsxiv: ## Install and setup nsxiv configuration
 	$(LN) $(BASE)/.config/nsxiv/exec/* $(CONFIG)/nsxiv/exec
 
 mpv: ## Install and setup mpv configuration
-	$(PKGINSTALL) mpv-mpris-git mpv-sponsorblock-minimal-git mpv-thumbnail-script mpv
+	$(PKGINSTALL) mpv-mpris-git mpv-sponsorblock-minimal-git
 	mkdir -p $(CONFIG)/mpv
 	$(LN) $(BASE)/.config/mpv/* $(CONFIG)/mpv
+	mkdir -p $(CONFIG)/mpv/scripts
+	$(LN) /usr/lib/mpv/sponsorblock-minimal.lua $(CONFIG)/mpv/scripts/sponsorblock-minimal.lua
+	$(LN) /usr/share/mpv/scripts/mpris.so $(CONFIG)/mpv/scripts/mpris.so
 
 lf: ## Install and setup lf configuration
 	$(PKGINSTALL) lf w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup
