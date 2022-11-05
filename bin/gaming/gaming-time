@@ -19,7 +19,7 @@ wayland_on () {
 }
 
 x11_off () {
-    start-program picom
+    start-program picom --experimental-backends
     start-program polybar top -r
 }
 
