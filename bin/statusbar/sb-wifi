@@ -3,8 +3,8 @@
 . sb-theme
 
 case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
-	down) wifiicon="睊" ;;
-	up) wifiicon="$(awk '/^\s*w/ { print "直", int($3 * 100 / 70) "%" }' /proc/net/wireless)" ;;
+	down) wifiicon="睊 " ;;
+	up) wifiicon="$(awk '/^\s*w/ { print "直 ", int($3 * 100 / 70) "%" }' /proc/net/wireless)" ;;
 esac
 
 display "$wifiicon" "$1"

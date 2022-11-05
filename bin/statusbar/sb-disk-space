@@ -16,4 +16,5 @@ while read -a Line; do
 done <<< "$(df -h -x devtmpfs -x tmpfs -x usbfs -x loop)"
 
 # display " $root_free/$root_size|$home_free/$home_size" $1
-display " $home_free/$home_size $home_percent" $1
+# display " $home_free/$home_size $home_percent" $1
+display " $home_percent" $1

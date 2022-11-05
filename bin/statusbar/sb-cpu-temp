@@ -14,4 +14,4 @@ done <<< "$(sensors)"
 
 
 cpuVal=${Temp:1:-4}
-display "$Temp" $1 "$cpuVal"
+display " $Temp" $1 "$cpuVal"
