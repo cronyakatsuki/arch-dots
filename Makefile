@@ -6,22 +6,7 @@ LN = ln -vsf
 LNDIR = ln -vs
 PKGINSTALL = paru -S --noconfirm --needed
 
-all:
-	zsh
-	xdg-user-dirs
-	startx
-	kitty
-	picom
-	fonts
-	dunst
-	theming
-	nsxiv
-	mpv
-	lf
-	opentabletdriver
-	dk
-	wayland
-	river
+all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opentabletdriver dk wayland river
 
 zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
@@ -31,7 +16,6 @@ zsh: ## Install my zsh config abd link my scripts
 	$(LN) $(BASE).config/zsh/* $(CONFIG)/zsh
 	$(LN) $(BASE).config/zsh/.* $(CONFIG)/zsh
 	$(LN) $(BASE).config/starship.toml $(CONFIG)/starship
-	mkdir $(BIN)
 	$(LN) $(BASE)/bin/* $(BIN)
 	chsh -s /usr/bin/zsh
 
