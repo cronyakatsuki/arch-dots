@@ -10,12 +10,11 @@ all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opent
 
 zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
-	$(LN) $(BASE).zshenv $(HOME)/.zshenv
-	mkdir -p $(CONFIG)
 	mkdir -p $(CONFIG)/zsh
-	$(LN) $(BASE).config/zsh/* $(CONFIG)/zsh
-	$(LN) $(BASE).config/zsh/.* $(CONFIG)/zsh
-	$(LN) $(BASE).config/starship.toml $(CONFIG)/starship
+	$(LN) $(BASE)/.zshenv $(HOME)/.zshenv
+	$(LN) $(BASE)/.config/zsh/* $(CONFIG)/zsh
+	$(LN) $(BASE)/.config/zsh/.* $(CONFIG)/zsh
+	$(LN) $(BASE)/.config/starship.toml $(CONFIG)/starship.toml
 	$(LN) $(BASE)/bin/* $(BIN)
 	chsh -s /usr/bin/zsh
 
