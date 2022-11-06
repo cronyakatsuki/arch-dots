@@ -72,9 +72,9 @@ super + {_, shift + }b
 super + g; l
     slock
 
-# Terminal Programs
-super + n
-    $TERMINAL --class newsboat -e newsboat
+# Terminal Programs with class
+super + {n, v, f}
+    $TERMINAL --class {newsboat -e newsboat, videos -e lf-run vids, lf -e lf-run}
 
 ##---Dmenu bindings---#
 
