@@ -17,6 +17,8 @@ zsh: ## Install my zsh config abd link my scripts
 	$(LN) $(BASE)/.config/starship.toml $(CONFIG)/starship.toml
 	$(LN) $(BASE)/bin/* $(BIN)
 	chsh -s /usr/bin/zsh
+	mkdir -p $(CONFIG)/git
+	$(LN) $(BASE)/.config/git/* $(CONFIG)/git
 
 xdg-user-dirs: ## Create and manage XDG-USER-DIRS
 	$(LN) $(BASE)/.config/user-dirs.dirs $(CONFIG)/user-dirs.dirs
