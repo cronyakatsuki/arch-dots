@@ -12,8 +12,9 @@ zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
 	mkdir -p $(CONFIG)/zsh
 	$(LN) $(BASE)/.zshenv $(HOME)/.zshenv
-	$(LN) $(BASE)/.config/zsh/* $(CONFIG)/zsh
-	$(LN) $(BASE)/.config/zsh/.* $(CONFIG)/zsh
+	$(LN) $(BASE)/.config/zsh/aliasrc $(CONFIG)/zsh/aliasrc
+	$(LN) $(BASE)/.config/zsh/.zprofile $(CONFIG)/zsh/.zprofile
+	$(LN) $(BASE)/.config/zsh/.zshrc $(CONFIG)/zsh/.zshrc
 	$(LN) $(BASE)/.config/starship.toml $(CONFIG)/starship.toml
 	$(LN) $(BASE)/bin/* $(BIN)
 	chsh -s /usr/bin/zsh
