@@ -6,7 +6,7 @@ LN = ln -vsf
 LNDIR = ln -vs
 PKGINSTALL = paru -S --noconfirm --needed
 
-all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opentabletdriver dk wayland river
+all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opentabletdriver dk
 
 zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
@@ -50,7 +50,7 @@ picom: ## Install and setup picom configuration
 	$(LN) $(BASE)/.config/picom/* $(CONFIG)/picom
 
 fonts: ## Setup fonts
-	$(PKGINSTALL) nerd-fonts-ibm-plex-mono nerd-fonts-jetbrains-mono ipa-fonts noto-fonts-emoji
+	$(PKGINSTALL) nerd-fonts-ibm-plex-mono nerd-fonts-jetbrains-mono ipa-fonts noto-fonts-emoji noto-fonts
 
 dunst: ## Install and setup dunst configuration
 	$(PKGINSTALL) dunst libnotify
@@ -115,7 +115,8 @@ wayland: ## Basic wayland packages needed for nice usage
 	$(LN) $(BASE)/.config/waylock/* $(CONFIG)/waylock
 
 
-river: ## Install and setup river wayland compositor
-	$(PKGINSTALL) river-git
+river: ## Install and setup river wayland compositor with waybar
+	$(PKGINSTALL) river-git waybar-git
 	mkdir -p $(CONFIG)/river
 	$(LN) $(BASE)/.config/river/* $(CONFIG)/river
+	$(LN) $(BASE)/.config/waybar/* $(CONFIG)/waybar
