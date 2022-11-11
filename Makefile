@@ -120,3 +120,8 @@ river: ## Install and setup river wayland compositor with waybar
 	mkdir -p $(CONFIG)/river
 	$(LN) $(BASE)/.config/river/* $(CONFIG)/river
 	$(LN) $(BASE)/.config/waybar/* $(CONFIG)/waybar
+
+searxng: ## Install and setup searxng
+	$(PKGINSTALL) searxng-git
+	sudo systemctl enable --now uwsgi@emperor.service
+	printf '%s\n' "To use it locally enter in the browser localhost:8888"
