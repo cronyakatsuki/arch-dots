@@ -31,3 +31,6 @@ start-program polybar top -r
 # my music
 start-program mpd
 start-program mpDris2
+
+# my custom startpage
+python3 -m http.server --directory ~/repos/startpage 8385

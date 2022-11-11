@@ -34,7 +34,7 @@ if [ -f $HOME/.cache/gaming.lock ]; then
     start-program syncthing
     start-program mpd --no-daemon
     start-program mpDris2
-    start-program ferdium
+    # start-program ferdium
     enableCronJobs
     rm $HOME/.cache/gaming.lock
     quick-notify "Gaming Time" "OFF"
