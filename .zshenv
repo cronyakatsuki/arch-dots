@@ -54,6 +54,7 @@ export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 
 # fzf catppuccin theme
 export FZF_DEFAULT_OPTS=" \
