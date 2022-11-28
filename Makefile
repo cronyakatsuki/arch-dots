@@ -9,10 +9,11 @@ PKGINSTALL = paru -S --noconfirm --needed
 all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opentabletdriver dk
 
 zsh: ## Install my zsh config abd link my scripts
-	$(PKGINSTALL) zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting starship pfetch-btw glow
+	$(PKGINSTALL) zsh starship glow
 	mkdir -p $(CONFIG)/zsh
 	$(LN) $(BASE)/.zshenv $(HOME)/.zshenv
-	$(LN) $(BASE)/.config/zsh/aliasrc $(CONFIG)/zsh/aliasrc
+	$(LN) $(BASE)/.config/zsh/aliases.zsh $(CONFIG)/zsh/aliases.zsh
+	$(LN) $(BASE)/.config/zsh/fuctions.sh $(CONFIG)/zsh/fuctions.sh
 	$(LN) $(BASE)/.config/zsh/.zprofile $(CONFIG)/zsh/.zprofile
 	$(LN) $(BASE)/.config/zsh/.zshrc $(CONFIG)/zsh/.zshrc
 	$(LN) $(BASE)/.config/starship.toml $(CONFIG)/starship.toml
@@ -58,10 +59,10 @@ dunst: ## Install and setup dunst configuration
 	$(LN) $(BASE)/.config/dunst/* $(CONFIG)/dunst
 
 theming: ## Install and setup theming settings
-	$(PKGINSTALL) kvantum qt5ct catppuccin-gtk-theme-macchiato catppuccin-macchiato-grub-theme-git \
+	$(PKGINSTALL) kvantum qt5ct catppuccin-gtk-theme-mocha catppuccin-mocha-grub-theme-git \
     kvantum-theme-catppuccin-git papirus-folders-catppuccin-git xcursor-breeze
-	papirus-folders --theme Papirus-Dark --color cat-macchiato-blue
-	sudo sed -i 's/#GRUB_THEME=.*/GRUB_THEME="\/usr\/share\/grub\/themes\/catppuccin-macchiato\/theme.txt"/' /etc/default/grub
+	papirus-folders --theme Papirus-Dark --color cat-mocha-blue
+	sudo sed -i 's/#GRUB_THEME=.*/GRUB_THEME="\/usr\/share\/grub\/themes\/catppuccin-mocha\/theme.txt"/' /etc/default/grub
 	sudo grub-mkconfig -o /boot/grub/grub.cfg
 	mkdir -p $(CONFIG)/Kvantum
 	mkdir -p $(CONFIG)/gtk-2.0

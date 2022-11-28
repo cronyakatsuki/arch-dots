@@ -18,11 +18,11 @@ super + {j,k}
 
 # move the active window up/down the stack
 super + shift + {j,k}
-	dkcmd win mvstack {down,up}
+	dkcmd win mvstack {down,upMS}
 
-# resize window, signed (+/-) for relative changes
+# change master and stack ratio
 super + {h,l}
-	dkcmd win resize {w=-20,w=+20}
+	dkcmd set msplit {-,+}0.025
 
 # view, send, or follow to a workspace (by number)
 super + {_,shift + ,ctrl + }{1-9}
@@ -73,14 +73,17 @@ super + g; l
     slock
 
 # Terminal Programs with class
-super + {n, v, f}
-    $TERMINAL --class {newsboat -e newsboat, videos -e lf-run vids, lf -e lf-run}
+super + t; {n,v f,y}
+    $TERMINAL --class {newsboat -e newsboat, videos -e lf-run vids,\
+        lf -e lf-run, ytfzf -e ytfzf}
 
 ##---Dmenu bindings---#
 
 # Key chaining some certain scripts
-super + p; {g,e,t,u,w,d,k}
-    {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man, dmenu-wifi, dmenu-runner, dmenu-kill}
+super + p; {g,e,t,u,w,d,k,l,b}
+    {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man,\
+        dmenu-wifi, dmenu-runner, dmenu-kill, dmenu-link-handler $(xclip -sel c -o), \
+        dmenu-browser}
 
 # Regular binding some other one's
 super + {d,F12,c}
@@ -90,5 +93,5 @@ Print
     dmenu-screenshot
 
 ##---Gaming bindings---##
-super + {shift, ctrl} + F12
-    {toggle-program picom --experimental-backends, gaming-time}
+super + shift + F12
+    gaming-time

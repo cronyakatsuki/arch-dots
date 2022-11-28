@@ -19,7 +19,7 @@ start-program syncthing
 start-program dunst
 
 # just some stuppid stuff I hate my self for actually using
-# start-program discord --start-minimized
+start-program discord --start-minimized
 # start-program ferdium
 
 # my password manager

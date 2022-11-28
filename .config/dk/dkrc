@@ -60,6 +60,7 @@ fi
 	dkcmd rule class="^firefox$" ws=1 focus=true
 	dkcmd rule class="^newsboat$" ws=4 focus=true
 	dkcmd rule class="^videos$" ws=4 focus=true
+	dkcmd rule class="^ytfzf$" ws=4 focus=true
 	dkcmd rule class="^lf$" ws=4 focus=true
 	dkcmd rule class="^discord$" ws=5 focus=true
 	dkcmd rule class="^Ferdium$" ws=5 focus=true

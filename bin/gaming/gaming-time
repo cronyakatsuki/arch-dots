@@ -1,51 +1,53 @@
 #!/bin/sh
 
 disableCronJobs () {
-    crontab -l | sed '2 s/./#&/' | crontab
+  crontab -l | sed '2 s/./#&/' | crontab
 }
 
 enableCronJobs () {
-    crontab -l | sed '2s/^.//' | crontab
+  crontab -l | sed '2s/^.//' | crontab
 }
 
 wayland_off () {
-    start-program wbg ~/pics/wallpapers/spooky_spill.jpg
-    start-program waybar
+  start-program wbg ~/pics/wallpapers/spooky_spill.jpg
+  start-program waybar
 }
 
 wayland_on () {
-    kill-nicely wbg
-    kill-nicely waybar
+  kill-nicely wbg
+  kill-nicely waybar
 }
 
 x11_off () {
-    start-program picom --experimental-backends
-    start-program polybar top -r
+  start-program picom --experimental-backends
+  start-program polybar top -r
+  # xrandr --output eDP --set TearFree on
 }
 
 x11_on () {
-    kill-nicely picom
-    kill-nicely polybar
+  kill-nicely picom
+  kill-nicely polybar
+  # xrandr --output eDP --set TearFree off
 }
 
 if [ -f $HOME/.cache/gaming.lock ]; then
-    [ $XDG_SESSION_TYPE = "wayland" ] && wayland_off || x11_off
-    start-program transmission-daemon
-    start-program syncthing
-    start-program mpd --no-daemon
-    start-program mpDris2
-    # start-program ferdium
-    enableCronJobs
-    rm $HOME/.cache/gaming.lock
-    quick-notify "Gaming Time" "OFF"
+  [ $XDG_SESSION_TYPE = "wayland" ] && wayland_off || x11_off
+  start-program transmission-daemon
+  start-program syncthing
+  start-program mpd --no-daemon
+  start-program mpDris2
+  # start-program ferdium
+  enableCronJobs
+  rm $HOME/.cache/gaming.lock
+  quick-notify "Gaming Time" "OFF"
 else
-    [ $XDG_SESSION_TYPE = "wayland" ] && wayland_on || x11_on
-    transmission-remote --exit
-    syncthing cli operations shutdown
-    kill-nicely -f mpDris2
-    mpd --kill
-    kill-nicely ferdium
-    disableCronJobs
-    touch $HOME/.cache/gaming.lock
-    quick-notify "Gaming Time" "ON"
+  [ $XDG_SESSION_TYPE = "wayland" ] && wayland_on || x11_on
+  transmission-remote --exit
+  syncthing cli operations shutdown
+  kill-nicely -f mpDris2
+  mpd --kill
+  kill-nicely ferdium
+  disableCronJobs
+  touch $HOME/.cache/gaming.lock
+  quick-notify "Gaming Time" "ON"
 fi

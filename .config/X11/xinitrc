@@ -50,6 +50,7 @@ fi
 
 optimus-fix.sh
 mouse_detect.sh
+keyboard-set
 xsetroot -cursor_name left_ptr
 xwallpaper --stretch $HOME/pics/wallpapers/spooky_spill.jpg
 
