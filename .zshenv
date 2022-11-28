@@ -1,13 +1,6 @@
-# Config by
-  # ____                            _    _         _             _    _
- # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
-# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
-# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
- # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
-                       # |___/
 # Path exprt
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/bin/dmenu/" "$HOME/bin/gaming/" "$HOME/bin/statusbar/" "$HOME/bin/misc/" "$HOME/bin/wayland" "$path[@]")
+path=("$HOME/.local/bin"  "$HOME/bin/dmenu/" "$HOME/bin/gaming/" "$HOME/bin/statusbar/" "$HOME/bin/misc/" "$HOME/bin/wayland" "$HOME/bin/fzf" "$path[@]")
 export PATH
 
 # Programs export
@@ -26,6 +19,8 @@ export SUDO_ASKPASS="dmenu-pass"
 # clipmenu settings
 export CM_MAX_CLIPS=20
 export CM_IGNORE_WINDOW="KeePassXC"
+export CM_SELECTIONS="clipboard"
+export CM_OWN_CLIPBOARD=1
 
 # clean up
 export XDG_STATE_HOME="$HOME/.local/state"
@@ -57,10 +52,12 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export PARALLEL_HOME="$XDG_CONFIG_HOME/parallel"
 
 # fzf catppuccin theme
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
---color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
---color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
+export FZF_DEFAULT_OPTS=" --reverse \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+
+export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden --exclude ".git"'
 
 # bemene options
 export BEMENU_OPTS="-H 24 --fn 'JetBrainsMono Nerd Font 10' \
@@ -70,7 +67,7 @@ export BEMENU_OPTS="-H 24 --fn 'JetBrainsMono Nerd Font 10' \
     --fbf '#8aadf4' --fbb '#1e2030'" 
 
 # bat theme
-export BAT_THEME="Catppuccin-macchiato"
+export BAT_THEME="Catppuccin-mocha"
 
 # lf icons
 export LF_ICONS="\
