@@ -9,7 +9,7 @@ logfile="$HOME/.dkrc.log"
 # (re)load sxhkd for keybinds
 if hash sxhkd >/dev/null 2>&1; then
 	pkill sxhkd
-	sxhkd -c "$HOME/.config/dk/sxhkdrc" &
+	sxhkd -c "$HOME/.config/dk/sxhkdrc" "$HOME/.config/sxhkd/general" &
 fi
 
 {

@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
 
-# power menu, quit dk
-super + {shift, control} + e
-    {dmenu-power-menu, dkcmd exit}
+# quit dk
+super + control + e
+    dkcmd exit
 
-# reload dk or sxhkd
-super + {shift, control} + r
-    {dkcmd reload, pkill -USR1 -x sxhkd}
+# reload dk
+super + shift + r
+    dkcmd reload
 
 # close window, swap tiled window in/out of master
 super + shift + {q,Return}
@@ -43,55 +43,3 @@ super + shift + space
 # change number of windows in master or first stack
 super + {comma, period}
 	dkcmd set master {+1,-1}
-
-##---System Control---##
-
-# Audio Control
-{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
-    sb-volume-update { up, down, mute }
-
-# Brightness
-{XF86MonBrightnessUp,XF86MonBrightnessDown}
-    sb-backlight-update { up, down }
-
-# Player control keybindings
-{XF86AudioPlay,XF86AudioPrev,XF86AudioNext}
-    dmenu-playerctl {play-pause,previous,next}
-
-##---Aplication Launchers---##
-
-# terminal
-super  + Return
-	$TERMINAL
-
-# Browser run
-super + {_, shift + }b
-    {$BROWSER, firefox -P unsecure}
-
-# Gui Programs
-super + g; l
-    slock
-
-# Terminal Programs with class
-super + t; {n,v f,y}
-    $TERMINAL --class {newsboat -e newsboat, videos -e lf-run vids,\
-        lf -e lf-run, ytfzf -e ytfzf}
-
-##---Dmenu bindings---#
-
-# Key chaining some certain scripts
-super + p; {g,e,t,u,w,d,k,l,b}
-    {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man,\
-        dmenu-wifi, dmenu-runner, dmenu-kill, dmenu-link-handler $(xclip -sel c -o), \
-        dmenu-browser}
-
-# Regular binding some other one's
-super + {d,F12,c}
-    {dmenu_run, dmenu-ryzenadj, clipmenu -l 10}
-
-Print
-    dmenu-screenshot
-
-##---Gaming bindings---##
-super + shift + F12
-    gaming-time

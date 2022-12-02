@@ -12,10 +12,7 @@ riverctl spawn transmission-daemon
 riverctl spawn syncthing
 riverctl spawn fnott
 riverctl spawn keepassxc
-riverctl spawn "mpd --no-daemon"
-riverctl spawn mpDris2
 riverctl spawn "discord --start-minimized"
-riverctl spawn ferdium
 
 # Programs keybindings
 riverctl map normal Super Return spawn $TERMINAL
