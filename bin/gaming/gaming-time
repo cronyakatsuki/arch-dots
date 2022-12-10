@@ -37,7 +37,7 @@ if [ -f $HOME/.cache/gaming.lock ]; then
   start-program mpd --no-daemon
   start-program mpDris2
   # start-program ferdium
-  enableCronJobs
+  # enableCronJobs
   rm $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "OFF"
 else
@@ -47,7 +47,7 @@ else
   kill-nicely -f mpDris2
   mpd --kill
   kill-nicely ferdium
-  disableCronJobs
+  # disableCronJobs
   touch $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "ON"
 fi

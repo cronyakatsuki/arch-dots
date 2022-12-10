@@ -27,5 +27,6 @@ plug "$XDG_CONFIG_HOME/zsh/functions.zsh"
 setopt appendhistory
 setopt INC_APPEND_HISTORY
 export HISTTIMEFORMAT="[%F %T]"
-HISTSIZE=10000
-SAVEHIST=5000
+# HISTSIZE=10000
+# SAVEHIST=5000
+HISTFILE="$XDG_STATE_HOME"/zsh/history

@@ -78,3 +78,8 @@ cpdir() {
 cf() {
     cat $1 | xclip -sel c
 }
+
+# Open a bookmark from buku in browser
+fb() {
+  buku --nostdin -p -f5 | fzf | cut -f1 | xargs -r buku --nostdin -o
+}

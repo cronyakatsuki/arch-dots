@@ -38,8 +38,8 @@ super + g; l
 
 # Terminal Programs with class
 super + t; {n,v f,y}
-  $TERMINAL --class {newsboat -e newsboat, videos -e lf-run vids,\
-    lf -e lf-run, ytfzf -e ytfzf}
+  $TERMINAL start --class {newsboat -- newsboat, videos -- lf-run vids,\
+    lf -- lf-run, ytfzf -- ytfzf}
 
 ##---Dmenu bindings---#
 
@@ -59,3 +59,7 @@ Print
 ##---Gaming bindings---##
 super + shift + F12
   gaming-time
+
+##---Buku bindings---##
+alt + b; {a, d}
+  {badd, dmenu-buku}

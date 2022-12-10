@@ -2,12 +2,9 @@
 
 image() {
     file=$1
-    w=$(($2-1))
-    h=$(($3-1))
-    x=$4
-    y=$5
-    kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file"
-    exit 1
+    w=$(($2-5))
+    h=$(($3))
+    chafa "$file" -f sixel -s "${w}x${h}" | sed 's/#/\n#/g'
 }
 
 batorcat() {

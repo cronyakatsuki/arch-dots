@@ -7,7 +7,7 @@ export PATH
 export EDITOR="nvim"
 export READER="zathura"
 export BOOK_READER="foliate"
-export TERMINAL="kitty"
+export TERMINAL="wezterm"
 export BROWSER="firefox"
 export VIDEO="mpv"
 export IMAGE="nsxiv"

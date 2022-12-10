@@ -58,6 +58,7 @@ fi
 
 	# # focus window and workspace on opening
 	dkcmd rule class="^firefox$" ws=1 focus=true
+	dkcmd rule class="^badd$" float=true
 	dkcmd rule class="^newsboat$" ws=4 focus=true
 	dkcmd rule class="^videos$" ws=4 focus=true
 	dkcmd rule class="^ytfzf$" ws=4 focus=true
@@ -79,7 +80,7 @@ if grep -q 'error:' "$logfile"; then
 	exit 1
 fi
 
-[ ! -f "$HOME/.cache/dk.lock" ] && $HOME/.config/dk/autorun.sh 
+[ ! -f "$HOME/.cache/dk.lock" ] && $HOME/.config/dk/autorun.sh
 touch $HOME/.cache/dk.lock
 
 exit 0

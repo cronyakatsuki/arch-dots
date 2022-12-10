@@ -6,7 +6,7 @@ LN = ln -vsf
 LNDIR = ln -vs
 PKGINSTALL = paru -S --noconfirm --needed
 
-all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf opentabletdriver dk
+all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf dk
 
 zsh: ## Install my zsh config abd link my scripts
 	$(PKGINSTALL) zsh starship glow
@@ -51,7 +51,7 @@ picom: ## Install and setup picom configuration
 	$(LN) $(BASE)/.config/picom/* $(CONFIG)/picom
 
 fonts: ## Setup fonts
-	$(PKGINSTALL) nerd-fonts-ibm-plex-mono nerd-fonts-jetbrains-mono ipa-fonts noto-fonts-emoji noto-fonts
+	$(PKGINSTALL) ipa-fonts noto-fonts-emoji noto-fonts ttf-nerd-fonts-symbols-2048-em ttf-jetbrains-mono ttf-ibm-plex
 
 dunst: ## Install and setup dunst configuration
 	$(PKGINSTALL) dunst libnotify
@@ -92,7 +92,7 @@ mpv: ## Install and setup mpv configuration
 	$(LN) /usr/share/mpv/scripts/mpris.so $(CONFIG)/mpv/scripts/mpris.so
 
 lf: ## Install and setup lf configuration
-	$(PKGINSTALL) lf w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup
+	$(PKGINSTALL) lf-sixel-git chafa w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup
 	mkdir -p $(CONFIG)/lf
 	$(LN) $(BASE)/.config/lf/* $(CONFIG)/lf
 
@@ -102,6 +102,14 @@ opentabletdriver: ## Install and setup opentabletdriver
 	echo "blacklist hid_uclogic" | sudo tee -a /etc/modprobe.d/blacklist.conf
 	sudo modprobe -r wacom
 	sudo modprobe -r hid_uclogic
+
+buku: ## Installing buku
+	$(PKGINSTALL) buku
+
+taskwarrior: ## Installing taskwarrior
+	$(PKGINSTALL) task
+	mkdir -p $(CONFIG)/task
+	$(LN) $(BASE)/.config/task $(CONFIG)/task
 
 dk: ## Install and setup dk configuration
 	$(PKGINSTALL) dk polybar sxhkd xtitle-git qt5-wayland
@@ -121,8 +129,3 @@ river: ## Install and setup river wayland compositor with waybar
 	mkdir -p $(CONFIG)/river
 	$(LN) $(BASE)/.config/river/* $(CONFIG)/river
 	$(LN) $(BASE)/.config/waybar/* $(CONFIG)/waybar
-
-searxng: ## Install and setup searxng
-	$(PKGINSTALL) searxng-git
-	sudo systemctl enable --now uwsgi@emperor.service
-	printf '%s\n' "To use it locally enter in the browser localhost:8888"

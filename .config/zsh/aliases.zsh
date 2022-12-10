@@ -39,3 +39,5 @@ alias dl='aria2c -j 16 -s 16 -x 16 -k 5M --file-allocation=none'
 
 # ;)
 alias lf='lf-run $@'
+
+alias b='buku --suggest'
