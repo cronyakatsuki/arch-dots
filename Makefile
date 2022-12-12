@@ -9,7 +9,7 @@ PKGINSTALL = paru -S --noconfirm --needed
 all: zsh xdg-user-dirs startx kitty picom fonts dunst theming nsxiv mpv lf dk
 
 zsh: ## Install my zsh config abd link my scripts
-	$(PKGINSTALL) zsh starship glow
+	$(PKGINSTALL) zsh starship
 	mkdir -p $(CONFIG)/zsh
 	$(LN) $(BASE)/.zshenv $(HOME)/.zshenv
 	$(LN) $(BASE)/.config/zsh/aliases.zsh $(CONFIG)/zsh/aliases.zsh
@@ -92,7 +92,7 @@ mpv: ## Install and setup mpv configuration
 	$(LN) /usr/share/mpv/scripts/mpris.so $(CONFIG)/mpv/scripts/mpris.so
 
 lf: ## Install and setup lf configuration
-	$(PKGINSTALL) lf-sixel-git chafa w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup
+	$(PKGINSTALL) lf-sixel-git chafa w3m unrar lhasa mupdf-tools mcomix-gtk3-git epub-thumbnailer-git python-pdf2image perl-image-exiftool ffmpegthumbnailer pup glow
 	mkdir -p $(CONFIG)/lf
 	$(LN) $(BASE)/.config/lf/* $(CONFIG)/lf
 

@@ -11,7 +11,6 @@ zstyle ':completion:*' rehash true
 # Plugins
 plug "kutsan/zsh-system-clipboard"
 plug "hlissner/zsh-autopair"
-plug "MichaelAquilina/zsh-auto-notify"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/completions"
 plug "zap-zsh/vim"

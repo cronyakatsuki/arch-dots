@@ -14,7 +14,7 @@ wezterm.on("format-tab-title", function(tab)
     };
 end);
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+wezterm.on("format-tab-title", function(tab)
   local pane = tab.active_pane
   local title = pane.foreground_process_name
   return {
@@ -30,5 +30,7 @@ return {
   font_size = 12,
   color_scheme = "Catppuccin Mocha",
   hide_tab_bar_if_only_one_tab = true,
+  front_end = "OpenGL",
+  -- freetype_load_flags = "NO_HINTING"
 }
 
