@@ -5,10 +5,38 @@ alias ssd-check="sudo smartctl -a /dev/nvme0n1 | grep -E -- 'Data Units Read:|Da
 
 # Adding colours to some of the regulas shit
 alias grep='grep --color=auto'
-alias ls='/usr/bin/ls -Alh --color=always --group-directories-first'
+alias ls='/usr/bin/exa -lab --icons --group-directories-first --git --no-time'
+alias cp='cp -iv'
+alias rm='rm -iv'
+alias mkd='mkdir -pv'
+alias tr="trash-put"
+alias trr='trash-restore'
 alias tree='tree -C'
 alias less='less -R'
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
+# Git aliases
+alias g='git'
+alias gst='git status -s'
+alias gc='git commit'
+alias ga='git add'
+alias gpl="git pull"
+alias gpom="git pull origin master"
+alias gpu="git push"
+alias gpuom="git push origin master"
+alias gd="git diff"
+alias gch="git checkout"
+alias gnb="git checkout -b"
+alias gac="git add . && git commit"
+alias grs="git restore --staged ."
+alias gre="git restore"
+alias gr="git remote"
+alias gcl="git clone"
+alias glg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold yellow)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
+alias gt="git ls-tree -r master --name-only"
+alias grm="git remote"
+alias gb="git branch"
+alias gf="git fetch"
 
 # Easier to type
 alias vi='nvim'
