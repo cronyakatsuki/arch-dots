@@ -21,6 +21,7 @@ export CM_MAX_CLIPS=20
 export CM_IGNORE_WINDOW="KeePassXC"
 export CM_SELECTIONS="clipboard"
 export CM_OWN_CLIPBOARD=1
+export CM_DIR="$HOME/.cache"
 
 # clean up
 export XDG_STATE_HOME="$HOME/.local/state"
