@@ -35,16 +35,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-# setup xserver
-# mode=$(envycontrol -q | awk '{ print $5 }')
-# if [ "$mode" = "nvidia" ]; then
-#     xrandr --setprovideroutputsource "AMD Radeon Vega 8 Graphics @ pci:0000:05:00.0" NVIDIA-0
-#     xrandr --auto
-# fi
-
-
-# [ -f "$HOME/.cache/bspwm.lock" ] && rm $HOME/.cache/bspwm.lock
-# [ -f "$HOME/.cache/dwm.lock" ] && rm $HOME/.cache/dwm.lock
 [ -f "$HOME/.cache/gaming.lock" ] && rm $HOME/.cache/gaming.lock
 [ -f "$HOME/.cache/dk.lock" ] && rm $HOME/.cache/dk.lock
 

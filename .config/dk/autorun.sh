@@ -19,8 +19,7 @@ start-program clipmenud
 start-program dunst
 
 # just some stuppid stuff I hate my self for actually using
-# I love me some flatpak
-flatpak run com.discordapp.Discord --start-minimized
+start-program discord --start-minimized
 # start-program ferdium
 
 # my password manager

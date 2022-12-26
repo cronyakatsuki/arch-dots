@@ -32,5 +32,6 @@ return {
   hide_tab_bar_if_only_one_tab = true,
   front_end = "OpenGL",
   -- freetype_load_flags = "NO_HINTING"
+  enable_wayland=true,
 }
 

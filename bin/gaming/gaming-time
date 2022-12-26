@@ -38,6 +38,7 @@ if [ -f $HOME/.cache/gaming.lock ]; then
   start-program mpDris2
   # start-program ferdium
   # enableCronJobs
+  nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=2'
   rm $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "OFF"
 else
@@ -48,6 +49,7 @@ else
   mpd --kill
   kill-nicely ferdium
   # disableCronJobs
+  nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
   touch $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "ON"
 fi

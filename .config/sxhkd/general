@@ -38,13 +38,16 @@ super + g; l
 
 # Terminal Programs with class
 super + t; {n,v,f,y}
-  $TERMINAL start --class {newsboat -- newsboat, videos -- lf-run ~/vids, lf -- lf-run, ytfzf -- ytfzf}
+  $TERMINAL start --class {newsboat -- newsboat,\
+    videos -- lf-run ~/vids, lf -- lf-run, ytfzf -- ytfzf}
 
 ##---Dmenu bindings---#
 
 # Key chaining some certain scripts
 super + p; {g,e,t,u,w,d,k,l,b}
-  {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man, dmenu-wifi, dmenu-runner, dmenu-kill, dmenu-link-handler $(xclip -sel c -o), dmenu-browser}
+  {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man,\
+    dmenu-wifi, dmenu-runner, dmenu-kill,\
+    dmenu-link-handler $(xclip -sel c -o), dmenu-browser}
 
 # Regular binding some other one's
 super + {d,F12,c}
@@ -58,5 +61,9 @@ super + shift + F12
   gaming-time
 
 ##---Buku bindings---##
-alt + b; {a,d}
-  {badd, dmenu-buku}
+alt + b; {a,o,e}
+  {badd, dmenu-buku open, dmenu-buku edit}
+
+##---Sripts---##
+super + F1
+  sound-output-toggle

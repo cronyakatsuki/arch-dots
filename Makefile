@@ -58,9 +58,9 @@ dunst: ## Install and setup dunst configuration
 	mkdir -p $(CONFIG)/dunst
 	$(LN) $(BASE)/.config/dunst/* $(CONFIG)/dunst
 
-theming: ## Install and setup theming settings
+theming-wm: ## Install and setup theming settings
 	$(PKGINSTALL) kvantum qt5ct catppuccin-gtk-theme-mocha catppuccin-mocha-grub-theme-git \
-    kvantum-theme-catppuccin-git papirus-folders-catppuccin-git xcursor-breeze
+	kvantum-theme-catppuccin-git papirus-folders-catppuccin-git catppuccin-mocha-light-cursors
 	papirus-folders --theme Papirus-Dark --color cat-mocha-blue
 	sudo sed -i 's/#GRUB_THEME=.*/GRUB_THEME="\/usr\/share\/grub\/themes\/catppuccin-mocha\/theme.txt"/' /etc/default/grub
 	sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -84,7 +84,7 @@ nsxiv: ## Install and setup nsxiv configuration
 	$(LN) $(BASE)/.config/nsxiv/exec/* $(CONFIG)/nsxiv/exec
 
 mpv: ## Install and setup mpv configuration
-	$(PKGINSTALL) mpv-mpris-git mpv-sponsorblock-minimal-git
+	$(PKGINSTALL) mpv mpv-mpris-git mpv-sponsorblock-minimal-git
 	mkdir -p $(CONFIG)/mpv
 	$(LN) $(BASE)/.config/mpv/* $(CONFIG)/mpv
 	mkdir -p $(CONFIG)/mpv/scripts
@@ -111,6 +111,10 @@ taskwarrior: ## Installing taskwarrior
 	mkdir -p $(CONFIG)/task
 	$(LN) $(BASE)/.config/task $(CONFIG)/task
 
+x11-wm-tools:
+	$(PKGINSTALL) pulsemixer pamixer thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman libgepub playerctl lxsession bluez bluez-utils  shotgun xdotool hacksaw brillo dmenu-bluetooth clipmenu-git colorpicker tumbler
+	sudo systemctl enable bluetooth.service
+
 dk: ## Install and setup dk configuration
 	$(PKGINSTALL) dk polybar sxhkd xtitle-git qt5-wayland
 	mkdir -p $(CONFIG)/dk
@@ -123,9 +127,17 @@ wayland: ## Basic wayland packages needed for nice usage
 	mkdir -p $(CONFIG)/waylock
 	$(LN) $(BASE)/.config/waylock/* $(CONFIG)/waylock
 
+plasma:
+	$(PKGINSTALL) ark bluedevil breeze-gtk catppuccin-kde-theme-git catppuccin-konsole-theme-git dolphin kde-gtk-config khotkeys kinfocenter konsole kscreen plasma-browser-integration plasma-desktop plasma-nm plasma-pa plasma-wayland-session sddm sddm-kcm powerdevil sddm-theme-catppuccin-git
+	sudo systemctl enable sddm
 
 river: ## Install and setup river wayland compositor with waybar
 	$(PKGINSTALL) river-git waybar-git
 	mkdir -p $(CONFIG)/river
 	$(LN) $(BASE)/.config/river/* $(CONFIG)/river
 	$(LN) $(BASE)/.config/waybar/* $(CONFIG)/waybar
+
+helix: ## Install and setup helix text editor
+	$(PKGINSTALL) helix taplo-cli cland pyright bash-language-server
+	mkdir -p $(CONFIG)/helix
+	$(LN) $(BASE)/.config/helix/* $(CONFIG)/helix

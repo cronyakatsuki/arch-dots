@@ -3,6 +3,8 @@ typeset -U PATH path
 path=("$HOME/.local/bin"  "$HOME/bin/dmenu/" "$HOME/bin/gaming/" "$HOME/bin/statusbar/" "$HOME/bin/misc/" "$HOME/bin/wayland" "$HOME/bin/fzf" "$path[@]")
 export PATH
 
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Programs export
 export EDITOR="nvim"
 export READER="zathura"
