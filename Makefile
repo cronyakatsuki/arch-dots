@@ -122,6 +122,13 @@ dk: ## Install and setup dk configuration
 	$(LN) $(BASE)/.config/dk/* $(CONFIG)/dk
 	$(LN) $(BASE)/.config/polybar/* $(CONFIG)/polybar
 
+xmonad: ## Install and setup xmonad
+	$(PKGINSTALL) xmonad xmonad-contrib xmobar trayer
+	mkdir -p $(CONFIG)/xmonad
+	mkdir -p $(CONFIG)/xmobar
+	$(LN) $(BASE)/.config/xmobar/* $(CONFIG)/xmobar
+	$(LN) $(BASE)/.config/xmonad/* $(CONFIG)/xmonad
+
 wayland: ## Basic wayland packages needed for nice usage
 	$(PKGINSTALL) waylock wl-clipboard bemenu bemenu-wayland imv-git qt5-wayland qt6-wayland wbg grim slurp xdg-desktop-portal-wlr
 	mkdir -p $(CONFIG)/waylock
