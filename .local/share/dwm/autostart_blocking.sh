@@ -3,4 +3,5 @@
 optimus-fix.sh
 mouse_detect.sh x11
 xsetroot -cursor_name left_ptr
-# ryzenadj_normal
+keyboard-set
+xwallpaper --stretch $HOME/pics/wallpapers/spooky_spill.jpg

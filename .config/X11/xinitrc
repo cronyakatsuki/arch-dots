@@ -46,4 +46,4 @@ xwallpaper --stretch $HOME/pics/wallpapers/spooky_spill.jpg
 
 export XDG_SESSION_TYPE=x11
 
-exec dk
+exec xmonad

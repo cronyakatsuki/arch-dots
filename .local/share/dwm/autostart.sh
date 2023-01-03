@@ -10,29 +10,31 @@ touch /tmp/dwm.lock
 # wal-seter
 
 # start my bar
-dwmblocks & disown dwmblocks
+# dwmblocks & disown dwmblocks
+
+# My program bindings
+start-program sxhkd -c "$HOME/.config/sxhkd/general"
 
 # start my torrent daemon
-transmission-daemon & disown transmission-daemon
-
-# start my clipboard manager
-clipmenud & disown clipmenud
-
-# fix polkit for me
-lxsession & disown lxsession
-
-# nice animations and compositing
-picom & disown picom --experimental-backends
+start-program transmission-daemon
 
 # sync for keepass and backup
-syncthing & disown syncthing
+start-program syncthing
+
+# fix polkit for me
+start-program lxsession
+
+# nice animations and compositing
+start-program picom
+
+# start my clipboard manager
+start-program clipmenud
 
 # notification daemon
-dunst & disown dunst
-
-# my password manager
-keepassxc & disown keepassxc
+start-program dunst
 
 # just some stuppid stuff I hate my self for actually using
-discord --start-minimized & disown discord
-ferdium & disown ferdium
+start-program discord --start-minimized
+
+# my password manager
+start-program keepassxc

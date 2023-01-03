@@ -19,8 +19,8 @@ wayland_on () {
 }
 
 x11_off () {
-  start-program picom --experimental-backends
-  start-program polybar top -r
+  start-program picom
+  # start-program polybar top -r
   # xrandr --output eDP --set TearFree on
 }
 
@@ -34,10 +34,6 @@ if [ -f $HOME/.cache/gaming.lock ]; then
   [ $XDG_SESSION_TYPE = "wayland" ] && wayland_off || x11_off
   start-program transmission-daemon
   start-program syncthing
-  start-program mpd --no-daemon
-  start-program mpDris2
-  # start-program ferdium
-  # enableCronJobs
   nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=2'
   rm $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "OFF"
@@ -45,10 +41,7 @@ else
   [ $XDG_SESSION_TYPE = "wayland" ] && wayland_on || x11_on
   transmission-remote --exit
   syncthing cli operations shutdown
-  kill-nicely -f mpDris2
-  mpd --kill
   kill-nicely ferdium
-  # disableCronJobs
   nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
   touch $HOME/.cache/gaming.lock
   quick-notify "Gaming Time" "ON"

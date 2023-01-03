@@ -13,4 +13,4 @@ while read -a Line; do
     fi
 done <<< "$(free -h --mega)"
 
-display "  $Used/$Total" "$1"
+display " $Used/$Total" "$1"
