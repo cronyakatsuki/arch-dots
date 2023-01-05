@@ -51,7 +51,7 @@ picom: ## Install and setup picom configuration
 	$(LN) $(BASE)/.config/picom/* $(CONFIG)/picom
 
 fonts: ## Setup fonts
-	$(PKGINSTALL) ipa-fonts noto-fonts-emoji noto-fonts ttf-nerd-fonts-symbols-2048-em ttf-jetbrains-mono ttf-ibm-plex
+	$(PKGINSTALL) ipa-fonts noto-fonts-emoji noto-fonts nerd-fonts-ibm-plex-mono
 
 dunst: ## Install and setup dunst configuration
 	$(PKGINSTALL) dunst libnotify
@@ -116,7 +116,7 @@ x11-wm-tools:
 	sudo systemctl enable bluetooth.service
 
 dk: ## Install and setup dk configuration
-	$(PKGINSTALL) dk polybar sxhkd xtitle-git qt5-wayland
+	$(PKGINSTALL) dk polybar sxhkd xtitle-git
 	mkdir -p $(CONFIG)/dk
 	mkdir -p $(CONFIG)/polybar
 	$(LN) $(BASE)/.config/dk/* $(CONFIG)/dk

@@ -1,5 +1,5 @@
 Config { overrideRedirect = True
-       , font     = "xft:JetBrains Mono:size=10:antialias=true,IpaGothic:size=11,Symbols Nerd Font:size=10"
+       , font     = "xft:BlexMono Nerd Font:size=10:antialias=true,IpaGothic:size=11"
        , bgColor  = "#1e1e2e"
        , fgColor  = "#89b4fa"
        , position = TopSize L 100 26
@@ -10,10 +10,11 @@ Config { overrideRedirect = True
                     , Run Com "sb-ram" [] "memory" 10
                     , Run Com "sb-disk-space" [] "disk" 10
                     , Run Com "sb-datetime" [] "date" 20
+                    , Run Com "sb-wifi" [] "wifi" 10
                     , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 10
                     , Run XMonadLog
                     ]
        , sepChar  = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu-temp% <fc=#eba0ac>•</fc> %cpu% <fc=#eba0ac>•</fc> %memory% <fc=#eba0ac>•</fc> %disk% <fc=#eba0ac>•</fc> %battery% <fc=#eba0ac>•</fc> %date%%trayerpad%"
+       , template = "%XMonadLog% }{ %cpu-temp% <fc=#eba0ac>•</fc> %cpu% <fc=#eba0ac>•</fc> %memory% <fc=#eba0ac>•</fc> %disk% <fc=#eba0ac>•</fc> %wifi% <fc=#eba0ac>•</fc> %battery% <fc=#eba0ac>•</fc> %date%%trayerpad%"
        }

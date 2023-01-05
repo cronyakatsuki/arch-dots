@@ -17,24 +17,19 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
-import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.SetWMName
-import XMonad.Hooks.RefocusLast
 
 -- Layout modifiers
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Layout.SimplestFloat
-import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
-import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 
 -- Utils
 import XMonad.Util.Loggers
@@ -70,7 +65,7 @@ myConfig = def
 
 -- My variables
 myModMask = mod4Mask
-myTerminal = "wezterm"
+myTerminal = "alacritty"
 myBorderWidth = 3
 
 myFocusFollowsMouse :: Bool
@@ -100,11 +95,29 @@ myStartupHook = do
 -- My scratchpads
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                , NS "wiki" spawnWiki findWiki manageWiki
+                , NS "notes" spawnNotes findNotes manageNotes
                 ]
   where
-    spawnTerm  = myTerminal ++ " start --class scratchpad"
+    spawnTerm  = myTerminal ++ " --class scratchpad"
     findTerm   = className =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.8
+                 w = 0.8
+                 t = 0.9 -h
+                 l = 0.9 -w
+    spawnWiki  = myTerminal ++ " --class wiki -e wiki"
+    findWiki   = className =? "wiki"
+    manageWiki = customFloating $ W.RationalRect l t w h
+               where
+                 h = 0.8
+                 w = 0.8
+                 t = 0.9 -h
+                 l = 0.9 -w
+    spawnNotes  = myTerminal ++ " --class wiki -e notes"
+    findNotes   = className =? "notes"
+    manageNotes = customFloating $ W.RationalRect l t w h
                where
                  h = 0.8
                  w = 0.8
@@ -139,8 +152,7 @@ myLayoutHook = lessBorders OnlyScreenFloat
           $ avoidStruts
           $ mouseResize
           $ windowArrange
-          $ T.toggleLayouts floats
-          $ mkToggle (NBFULL ?? NOBORDERS ?? EOT)  myDefaultLayout
+          $ myDefaultLayout
   where
     myDefaultLayout = onWorkspaces [(myWorkspaces !! 0), (myWorkspaces !! 3), (myWorkspaces !! 4)] (monocle ||| floats ||| tall)
                     $ onWorkspace (myWorkspaces !! 5) (floats ||| tall ||| monocle)
@@ -151,19 +163,7 @@ myLayoutHook = lessBorders OnlyScreenFloat
 -- My manage hook
 myManageHook :: ManageHook
 myManageHook = composeAll
-    [ className =? "Gimp"             --> doFloat
-    , className =? "confirm"          --> doFloat
-    , className =? "file_progress"    --> doFloat
-    , className =? "dialog"           --> doFloat
-    , className =? "download"         --> doFloat
-    , className =? "error"            --> doFloat
-    , className =? "notification"     --> doFloat
-    , className =? "splash"           --> doFloat
-    , className =? "toolbar"          --> doFloat
-    , className =? "Yad"              --> doCenterFloat
-    , className =? "pinentry-gtk-2"   --> doFloat
-    , className =? "badd"             --> doCenterFloat
-    , className =? "firefox"          --> doShiftAndGo ( myWorkspaces !! 0)
+    [ className =? "firefox"          --> doShiftAndGo ( myWorkspaces !! 0)
     , className =? "newsboat"         --> doShiftAndGo ( myWorkspaces !! 3)
     , className =? "videos"           --> doShiftAndGo ( myWorkspaces !! 3)
     , className =? "ytfzf"            --> doShiftAndGo ( myWorkspaces !! 3)
@@ -175,21 +175,24 @@ myManageHook = composeAll
     , className =? "Lutris"           --> doShiftAndGo ( myWorkspaces !! 5)
     , className =? "Steam"            --> doShiftAndGo ( myWorkspaces !! 5)
     , className =? "heroic"           --> doShiftAndGo ( myWorkspaces !! 5)
-    -- , isFloat                         --> doCenterFloat
-    , isDialog                        --> doCenterFloat
+    , isDialog                        --> doFloat
+    , className =? "Gimp"             --> doFloat
+    , className =? "confirm"          --> doFloat
+    , className =? "file_progress"    --> doFloat
+    , className =? "dialog"           --> doFloat
+    , className =? "download"         --> doFloat
+    , className =? "error"            --> doFloat
+    , className =? "notification"     --> doFloat
+    , className =? "splash"           --> doFloat
+    , className =? "toolbar"          --> doFloat
+    , className =? "pinentry-gtk-2"   --> doFloat
+    , className =? "Yad"              --> doCenterFloat
+    , className =? "badd"             --> doCenterFloat
     , isFullscreen                    --> doFullFloat
-    , willFloat                       --> doCenterFloat
-    , fmap not willFloat              --> insertPosition Below Newer
     , namedScratchpadManageHook myScratchPads
     ]
     where
       doShiftAndGo ws = doF (W.greedyView ws) <+> doShift ws
-      willFloat :: Query Bool
-      willFloat = ask >>= \w -> liftX $ withDisplay $ \d -> do
-        sh <- io $ getWMNormalHints d w
-        let isFixedSize = isJust (sh_min_size sh) && sh_min_size sh == sh_max_size sh
-        isTransient <- isJust <$> io (getTransientForHint d w)
-        return (isFixedSize || isTransient)
 
 -- My keybindings in a nice readable format
 myKeys = \c -> mkKeymap c $
@@ -209,6 +212,8 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-r", spawn "xmonad --recompile && xmonad --restart") -- Restart xmonad
   , ("M-<Tab>", toggleWS' ["NSP"]) -- Toogle last used workspace, ignoring named scratchpad
   , ("M-s t", namedScratchpadAction myScratchPads "terminal") -- Toggle scratchpad
+  , ("M-s w", namedScratchpadAction myScratchPads "wiki") -- Toggle scratchpad
+  , ("M-s n", namedScratchpadAction myScratchPads "notes") -- Toggle scratchpad
   , ("M-1", windows $ W.greedyView $ myWorkspaces !! 0) -- Check workspace 1
   , ("M-2", windows $ W.greedyView $ myWorkspaces !! 1) -- Check workspace 2
   , ("M-3", windows $ W.greedyView $ myWorkspaces !! 2) -- Check workspace 3
