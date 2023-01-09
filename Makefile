@@ -45,6 +45,11 @@ kitty: ## Install and setup kitty configuration
 	mkdir -p $(CONFIG)/kitty
 	$(LN) $(BASE)/.config/kitty/* $(CONFIG)/kitty
 
+alacritty: ## Install and setup alacritty
+	$(PKGINSTALL) alacritty-sixel-git
+	mkdir -p $(CONFIG)/alacritty
+	$(LN) $(BASE)/.config/alacritty/*
+
 picom: ## Install and setup picom configuration
 	$(PKGINSTALL) picom
 	mkdir -p $(CONFIG)/picom
@@ -112,7 +117,7 @@ taskwarrior: ## Installing taskwarrior
 	$(LN) $(BASE)/.config/task $(CONFIG)/task
 
 x11-wm-tools:
-	$(PKGINSTALL) pulsemixer pamixer thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman libgepub playerctl lxsession bluez bluez-utils  shotgun xdotool hacksaw brillo dmenu-bluetooth clipmenu-git colorpicker tumbler
+	$(PKGINSTALL) pulsemixer pamixer thunar thunar-archive-plugin thunar-media-tags-plugin thunar-volman libgepub playerctl lxsession bluez bluez-utils  shotgun xdotool hacksaw brillo dmenu-bluetooth clipmenu-git colorpicker tumbler gvfs
 	sudo systemctl enable bluetooth.service
 
 dk: ## Install and setup dk configuration

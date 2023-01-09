@@ -1,45 +1,45 @@
 #!/usr/bin/env sh
 
 # quit dk
-super + control + e
+alt + control + e
     dkcmd exit
 
 # reload dk
-super + shift + r
+alt + shift + r
     dkcmd reload
 
 # close window, swap tiled window in/out of master
-super + shift + {q,Return}
+alt + shift + {q,Return}
 	dkcmd win {kill,swap}
 
 # focus next or previous window
-super + {j,k}
+alt + {j,k}
 	dkcmd win focus {next,prev}
 
 # move the active window up/down the stack
-super + shift + {j,k}
+alt + shift + {j,k}
 	dkcmd win mvstack {down,upMS}
 
 # change master and stack ratio
-super + {h,l}
+alt + {h,l}
 	dkcmd set msplit {-,+}0.025
 
 # view, send, or follow to a workspace (by number)
-super + {_,shift + ,ctrl + }{1-9}
+alt + {_,shift + ,ctrl + }{1-9}
 	dkcmd ws {view,send,follow} {1-9}
 
 # focues last used workspace cycle tiled windows in place
-{super, alt} + Tab
+{alt, alt} + Tab
     dkcmd {ws view last, win cycle}
 
 # toggle fullscreen
-super + F11
+alt + F11
 	dkcmd win full
 
 # toggle floating or sticky
-super + shift + space
+alt + shift + space
 	dkcmd win float
 
 # change number of windows in master or first stack
-super + {comma, period}
+alt + {comma, period}
 	dkcmd set master {+1,-1}

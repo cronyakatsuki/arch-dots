@@ -43,7 +43,7 @@ fi
 	dkcmd set smart_gap=false smart_border=false
 
 	# define mouse mod and move/resize buttons
-	dkcmd set mouse mod=super move=button1 resize=button3
+	dkcmd set mouse mod=alt move=button1 resize=button3
 
 
 	# borders
@@ -58,6 +58,7 @@ fi
 
 	# # focus window and workspace on opening
 	dkcmd rule class="^firefox$" ws=1 focus=true
+  dkcmd rule class="^LibreWolf$" ws=1 focus=true
 	dkcmd rule class="^badd$" float=true
 	dkcmd rule class="^newsboat$" ws=4 focus=true
 	dkcmd rule class="^videos$" ws=4 focus=true
@@ -70,6 +71,8 @@ fi
 	dkcmd rule class="^Lutris$" ws=6 focus=true
 	dkcmd rule class="^Steam$" ws=6 focus=true
 	dkcmd rule class="^heroic$" ws=6 focus=true
+	dkcmd rule class="^gamescope$" ws=6 focus=true
+  dkcmd rule class="^itch$" ws=6 focus=true
 
 } >> "$logfile" 2>&1 # append responses
 

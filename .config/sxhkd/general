@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 # power menu
-super + shift + e
+alt + shift + e
   dmenu-power-menu
 
 # Reload sxhkd
-super + control + r
+alt + control + r
   pkill -USR1 -x sxhkd
 
 ##---System Control---##
@@ -25,45 +25,47 @@ super + control + r
 ##---Aplication Launchers---##
 
 # terminal
-super + Return
+alt + Return
 	$TERMINAL
 
 # Browser run
-super + {_, shift + }b
-  {$BROWSER, firefox -P unsecure}
+# alt + {_, shift + }b
+alt + b
+  librewolf
+  # {$BROWSER, librewolf -P unsecure}
 
 # Gui Programs
-super + g; l
+alt + g; l
   slock
 
 # Terminal Programs with class
-super + t; {n,v,f,y}
+alt + t; {n,v,f,y}
   $TERMINAL --class {newsboat -e newsboat,\
     videos -e lf-run ~/vids, lf -e lf-run, ytfzf -e ytfzf}
 
 ##---Dmenu bindings---#
 
 # Key chaining some certain scripts
-super + p; {g,e,t,u,w,d,k,l,b}
+alt + p; {g,e,t,u,w,d,k,l,b}
   {dmenu-games, dmenu-configs, dmenu-transmission, dmenu-usb-man,\
     dmenu-wifi, dmenu-runner, dmenu-kill,\
     dmenu-link-handler $(xclip -sel c -o), dmenu-browser}
 
 # Regular binding some other one's
-super + {d,F12,c}
+alt + {d,F12,c}
   {dmenu_run, dmenu-ryzenadj, clipmenu -l 10}
 
 Print
   dmenu-screenshot
 
 ##---Gaming bindings---##
-super + shift + F12
+alt + shift + F12
   gaming-time
 
 ##---Buku bindings---##
-alt + b; {a,o,e}
+ctrl + b; {a,o,e}
   {badd, dmenu-buku open, dmenu-buku edit}
 
 ##---Sripts---##
-super + F1
+alt + F1
   sound-output-toggle

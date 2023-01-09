@@ -3,7 +3,7 @@
 export MOZ_ENABLE_WAYLAND=1
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=river
-export XKB_DEFAULT_LAYOUT="hr"
+# export XKB_DEFAULT_LAYOUT="hr"
 export XKB_DEFAULT_OPTIONS="caps:escape"
 
 [ -f "$HOME/.cache/gaming.lock" ] && rm $HOME/.cache/gaming.lock

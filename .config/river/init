@@ -1,23 +1,29 @@
 #!/bin/sh
 
+. ~/.config/dmenu/config
+
+# Change terminal to foot
+TERMINAL="foot"
+
 # Autostart
-riverctl spawn 'wlr-randr --output eDP-1 --scale 1.25'
+# riverctl spawn 'wlr-randr --output eDP-1 --scale 1.25'
 riverctl spawn 'dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 riverctl spawn 'systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
-riverctl spawn 'wbg ~/pics/wallpapers/spooky_spill.jpg'
+# riverctl spawn 'wbg ~/pics/wallpapers/spooky_spill.jpg'
 riverctl spawn reload-portals
 riverctl spawn mouse_detect.sh
-riverctl spawn waybar
-riverctl spawn transmission-daemon
-riverctl spawn syncthing
-riverctl spawn fnott
+# riverctl spawn waybar
+# riverctl spawn transmission-daemon
+# riverctl spawn syncthing
+# riverctl spawn fnott
 riverctl spawn keepassxc
-riverctl spawn "discord --start-minimized"
+# riverctl spawn "discord --start-minimized"
+riverctl spawn "wl-paste -t text --watch clipman store"
 
 # Programs keybindings
 riverctl map normal Super Return spawn $TERMINAL
 
-riverctl map normal Super D spawn 'bemenu-run -p "Run: "'
+riverctl map normal Super D spawn 'dmenu-wl_run -p "Run: "'
 riverctl map normal Super F12 spawn dmenu-ryzenadj
 
 riverctl map normal Super+Shift E spawn dmenu-power-menu
@@ -187,4 +193,4 @@ riverctl input "pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad" scroll-method
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-exec rivertile -view-padding 8 -outer-padding 8 -main-ratio 0.5
+riverctl spawn "rivertile -view-padding 7 -outer-padding 7 -main-ratio 0.5"
